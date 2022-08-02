@@ -34,6 +34,8 @@ export class CoursesService {
       id: this.courses.length + 1,
       ...createCourseDTO
     });
+
+    return createCourseDTO;
   }
 
   update(id: number | string, updateCourseDTO: any) {
