@@ -10,6 +10,8 @@ import {
   Post
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 @Controller('courses')
 export class CoursesController {
   constructor(private readonly courseService: CoursesService) {}
@@ -26,12 +28,12 @@ export class CoursesController {
 
   @Post()
   @HttpCode(HttpStatus.NO_CONTENT) // OR 204
-  create(@Body() body: any) {
+  create(@Body() body: CreateCourseDto) {
     return this.courseService.create(body);
   }
 
   @Patch(':id')
-  update(@Param('id') id: number | string, @Body() body: any) {
+  update(@Param('id') id: number | string, @Body() body: UpdateCourseDto) {
     return this.courseService.update(id, body);
   }
 
