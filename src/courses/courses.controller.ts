@@ -1,10 +1,19 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Res
+} from '@nestjs/common';
 
 @Controller('courses')
 export class CoursesController {
   @Get('list')
-  findAll() {
-    return 'Listagem de cursos';
+  findAll(@Res() response) {
+    return response.status(200).send('Lista completa dos cursos');
   }
 
   @Get('category/:category')
@@ -15,5 +24,13 @@ export class CoursesController {
   @Get(':id')
   findOne(@Param('id') id: number) {
     return `Curso ${id}`;
+  }
+
+  @Post()
+  @HttpCode(HttpStatus.NO_CONTENT) // OR 204
+  create(@Body() body: any) {
+    return {
+      body
+    };
   }
 }
