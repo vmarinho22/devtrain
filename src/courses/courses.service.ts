@@ -25,6 +25,8 @@ export class CoursesService {
     if (!course) {
       throw new NotFoundException(`Curso id: ${id} não encontrado.`);
     }
+
+    return course;
   }
 
   create(createCourseDTO: any) {
