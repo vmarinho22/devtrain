@@ -22,7 +22,10 @@ export class CoursesService {
   }
 
   create(createCourseDTO: any) {
-    this.courses.push(createCourseDTO);
+    this.courses.push({
+      id: this.courses.length + 1,
+      ...createCourseDTO
+    });
   }
 
   update(id: number | string, updateCourseDTO: any) {
@@ -30,7 +33,10 @@ export class CoursesService {
       (course: Course) => course.id === Number(id)
     );
 
-    this.courses[indexCourse] = updateCourseDTO;
+    this.courses[indexCourse] = {
+      ...this.courses[indexCourse],
+      ...updateCourseDTO
+    };
   }
 
   remove(id: number | string) {
