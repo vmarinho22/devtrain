@@ -8,8 +8,11 @@ export class Course {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
-  description?: string;
+  @Column({
+    type: 'text',
+    nullable: true
+  })
+  description?: string | null;
 
   @Column('json', { nullable: true })
   tags?: string[];
