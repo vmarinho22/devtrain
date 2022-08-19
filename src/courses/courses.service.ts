@@ -16,11 +16,16 @@ export class CoursesService {
   ) {}
 
   findAll() {
-    return this.courseRepository.find();
+    return this.courseRepository.find({
+      relations: ['tags']
+    });
   }
 
   async findOne(id: number | string) {
-    const course = await this.courseRepository.findOneBy({ id });
+    const course = await this.courseRepository.findOne({
+      where: { id },
+      relations: ['tags']
+    });
 
     if (!course) {
       throw new NotFoundException(`Curso id: ${id} não encontrado.`);
